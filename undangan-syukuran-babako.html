@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Undangan Syukuran Babako</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(to bottom, #3b0a12, #7a001a);
+    color: #fff;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+/* CORAK MINANG */
+body::before, body::after {
+    content: "";
+    position: fixed;
+    top: 0;
+    width: 80px;
+    height: 100%;
+    background: repeating-linear-gradient(
+        45deg,
+        gold,
+        gold 10px,
+        transparent 10px,
+        transparent 20px
+    );
+    opacity: 0.25;
+    z-index: 0;
+}
+
+body::before { left: 0; }
+body::after { right: 0; }
+
+.section {
+    padding: 60px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.card {
+    max-width: 750px;
+    margin: auto;
+    padding: 50px;
+    margin-top: 50px;
+    background: rgba(255,255,255,0.08);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+
+    /* ✨ ANIMASI MASUK */
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+    animation: munculUndangan 1.5s ease-out forwards;
+}
+
+.kata-wrapper {
+    margin-top: 15px;
+    margin-bottom: 25px;
+}
+
+/* efek typing */
+.typing {
+    font-size: 16px;
+    color: gold;
+    font-weight: 500;
+    min-height: 20px;
+    margin-bottom: 10px;
+
+    /* ✔ INI YANG BIKIN DI TENGAH */
+    display: block;
+    text-align: center;
+    width: 100%;
+    border-right: 2px solid gold;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.kata-wrapper {
+    margin-top: 15px;
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+@keyframes blink {
+    50% { border-color: transparent; }
+}
+
+/* fade text */
+.fade-text {
+    font-size: 15px;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(15px);
+    animation: fadeInText 1.5s ease forwards;
+    animation-delay: 3s;
+}
+
+@keyframes fadeInText {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* garis emas Minang */
+.garis-emas {
+    width: 60%;
+    height: 2px;
+    margin: 20px auto;
+    background: linear-gradient(to right, transparent, gold, transparent);
+    opacity: 0.7;
+}
+
+@keyframes munculUndangan {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* RUMAH GADANG */
+.rumah-gadang svg {
+    width: 260px;
+    fill: gold;
+    opacity: 0.9;
+}
+
+/* FOTO */
+.foto-anak img {
+    width: 230px;
+    height: 230px;
+    border-radius: 50%;
+    border: 5px solid gold;
+    object-fit: cover;
+}
+
+/* TEXT */
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    color: gold;
+    margin-bottom: 15px;
+}
+
+.nama {
+    font-size: 26px;
+    color: gold;
+    margin: 10px 0;
+}
+
+.countdown {
+    margin-top: 20px;
+    font-size: 18px;
+    color: gold;
+    font-weight: bold;
+}
+
+button {
+    margin-top: 15px;
+    padding: 12px 25px;
+    border-radius: 30px;
+    border: none;
+    background: gold;
+    color: #5c0a18;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    background: white;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 AUDIO SUPER OPTIMIZED -->
+<audio id="bgMusic" autoplay loop preload="auto">
+    <source src="lagu-minang1.mp3" type="audio/mpeg">
+</audio>
+
+<div class="section">
+
+<!-- RUMAH GADANG -->
+<div class="rumah-gadang">
+<svg viewBox="0 0 500 200">
+<path d="M50 150 L100 80 L150 150 L200 80 L250 150 L300 80 L350 150 L400 80 L450 150 Z"/>
+<rect x="60" y="150" width="380" height="30"/>
+</svg>
+</div>
+
+<div class="card">
+
+<h1>Undangan Syukuran Babako</h1>
+
+<p>بسم الله الرحمن الرحيم</p>
+
+<div class="kata-wrapper">
+    <div class="typing" id="typingText"></div>
+
+    <p class="fade-text">
+        Dengan penuh rasa syukur ke hadirat Allah SWT,<br>
+        kami bermaksud mengundang Bapak/Ibu/Saudara/i<br>
+        untuk berkenan hadir dalam acara Syukuran Babako.
+    </p>
+</div>
+
+<div class="garis-emas"></div>
+
+<div class="foto-anak">
+<img src="foto-anak2.png" alt="Foto Anak">
+</div>
+
+<div class="nama">Azfer Fathariano Zani</div>
+
+<p>
+Putra dari<br>
+Bapak Apri Yurizal & Ibu Anike Nuella
+</p>
+
+<h2>Syukuran Babako</h2>
+
+<p><b>Hari / Tanggal :</b> Selasa, 19 Mei 2026</p>
+<p><b>Waktu :</b> 10.00 WIB – Selesai</p>
+
+<div class="countdown" id="countdown"></div>
+
+<button onclick="bukaMaps()">📍 Lihat Lokasi</button>
+
+</div>
+</div>
+
+<script>
+// 📍 MAP
+function bukaMaps() {
+    window.open("https://maps.app.goo.gl/B4nEzbKgA16r9TMy8");
+}
+
+// ⏳ COUNTDOWN
+var countDownDate = new Date("May 19, 2026 10:00:00").getTime();
+
+setInterval(function() {
+    var now = new Date().getTime();
+    var distance = countDownDate - now;
+
+    var days = Math.floor(distance / (1000*60*60*24));
+    var hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
+    var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
+    var seconds = Math.floor((distance % (1000*60))/1000);
+
+    document.getElementById("countdown").innerHTML =
+    "Menuju Acara: " + days + " Hari " + hours + " Jam " +
+    minutes + " Menit " + seconds + " Detik";
+}, 1000);
+
+const text = "Assalamu’alaikum Warahmatullahi Wabarakatuh";
+let i = 0;
+
+function typingEffect() {
+    if (i < text.length) {
+        document.getElementById("typingText").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typingEffect, 80);
+    }
+}
+
+window.addEventListener("DOMContentLoaded", typingEffect);
+
+/* 🎵 MUSIK FAST START (ANTI DELAY OPTIMIZED) */
+window.addEventListener("DOMContentLoaded", function() {
+    var music = document.getElementById("bgMusic");
+
+    // paksa load lebih cepat
+    music.load();
+
+    // coba play secepat mungkin
+    var playPromise = music.play();
+
+    if (playPromise !== undefined) {
+        playPromise.catch(function() {
+            // fallback kalau diblok browser
+            document.body.addEventListener("click", function () {
+                music.play();
+            }, { once: true });
+
+            document.body.addEventListener("touchstart", function () {
+                music.play();
+            }, { once: true });
+        });
+    }
+});
+</script>
+
+</body>
+</html>
