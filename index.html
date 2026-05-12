@@ -5,194 +5,240 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Undangan Syukuran Babako</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+    font-family:'Poppins',sans-serif;
+    background:linear-gradient(to bottom,#3b0a12,#7a001a);
+    color:white;
+    text-align:center;
+    overflow:hidden;
 }
 
-body {
-    font-family: 'Poppins', sans-serif;
-    background: linear-gradient(to bottom, #3b0a12, #7a001a);
-    color: #fff;
-    text-align: center;
-    overflow-x: hidden;
-}
+/* ================= ORNAMEN MINANG KIRI KANAN ================= */
 
-/* CORAK MINANG */
-body::before, body::after {
-    content: "";
-    position: fixed;
-    top: 0;
-    width: 80px;
-    height: 100%;
-    background: repeating-linear-gradient(
+body::before,
+body::after{
+    content:"";
+    position:fixed;
+    top:0;
+    width:90px;
+    height:100%;
+    background:
+    repeating-linear-gradient(
         45deg,
-        gold,
-        gold 10px,
-        transparent 10px,
-        transparent 20px
+        gold 0px,
+        gold 8px,
+        transparent 8px,
+        transparent 16px
     );
-    opacity: 0.25;
-    z-index: 0;
+    opacity:0.15;
+    z-index:-1;
 }
 
-body::before { left: 0; }
-body::after { right: 0; }
-
-.section {
-    padding: 60px 20px;
-    position: relative;
-    z-index: 1;
+body::before{
+    left:0;
+    border-right:3px solid gold;
 }
 
-.card {
-    max-width: 750px;
-    margin: auto;
-    padding: 50px;
-    margin-top: 50px;
-    background: rgba(255,255,255,0.08);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-
-    /* ✨ ANIMASI MASUK */
-    opacity: 0;
-    transform: translateY(40px) scale(0.95);
-    animation: munculUndangan 1.5s ease-out forwards;
+body::after{
+    right:0;
+    border-left:3px solid gold;
 }
 
-.kata-wrapper {
-    margin-top: 15px;
-    margin-bottom: 25px;
+/* ================== ENVELOPE ================== */
+
+.envelope-container{
+    position:fixed;
+    width:100%;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    flex-direction:column;
+    z-index:999;
 }
 
-/* efek typing */
-.typing {
-    font-size: 16px;
-    color: gold;
-    font-weight: 500;
-    min-height: 20px;
-    margin-bottom: 10px;
-
-    /* ✔ INI YANG BIKIN DI TENGAH */
-    display: block;
-    text-align: center;
-    width: 100%;
-    border-right: 2px solid gold;
-    white-space: nowrap;
-    overflow: hidden;
+.envelope{
+    width:340px;
+    height:210px;
+    position:relative;
+    cursor:pointer;
+    perspective:1000px;
+    animation:fadeIn 1.5s ease;
 }
 
-.kata-wrapper {
-    margin-top: 15px;
-    margin-bottom: 25px;
-    text-align: center;
+.envelope-body{
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,gold,#d4af37);
+    position:absolute;
+    border-radius:10px;
+    box-shadow:0 15px 40px rgba(0,0,0,0.4);
 }
 
-@keyframes blink {
-    50% { border-color: transparent; }
+.flap{
+    width:100%;
+    height:100%;
+    background:linear-gradient(135deg,#d4af37,gold);
+    position:absolute;
+    clip-path:polygon(0 0,100% 0,50% 55%);
+    transform-origin:top;
+    transition:1.2s ease;
 }
 
-/* fade text */
-.fade-text {
-    font-size: 15px;
-    line-height: 1.8;
-    opacity: 0;
-    transform: translateY(15px);
-    animation: fadeInText 1.5s ease forwards;
-    animation-delay: 3s;
+.envelope.open .flap{
+    transform:rotateX(-180deg);
 }
 
-@keyframes fadeInText {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.envelope-text{
+    position:absolute;
+    width:100%;
+    top:80px;
+    font-weight:bold;
+    color:#5c0a18;
+    font-size:18px;
 }
 
-/* garis emas Minang */
-.garis-emas {
-    width: 60%;
-    height: 2px;
-    margin: 20px auto;
-    background: linear-gradient(to right, transparent, gold, transparent);
-    opacity: 0.7;
+@keyframes fadeIn{
+    from{opacity:0;transform:translateY(20px)}
+    to{opacity:1;transform:translateY(0)}
 }
 
-@keyframes munculUndangan {
-    to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-    }
+/* ================== UNDANGAN ================== */
+
+.section{
+    display:none;
+    padding:60px 20px;
+    overflow:auto;
+    animation:zoomIn 1.2s ease forwards;
 }
 
-/* RUMAH GADANG */
-.rumah-gadang svg {
-    width: 260px;
-    fill: gold;
-    opacity: 0.9;
+@keyframes zoomIn{
+    from{opacity:0;transform:scale(0.9)}
+    to{opacity:1;transform:scale(1)}
 }
 
-/* FOTO */
-.foto-anak img {
-    width: 230px;
-    height: 230px;
-    border-radius: 50%;
-    border: 5px solid gold;
-    object-fit: cover;
+.card{
+    max-width:750px;
+    margin:auto;
+    padding:50px;
+    margin-top:40px;
+    background:rgba(255,255,255,0.08);
+    border-radius:25px;
+    backdrop-filter:blur(15px);
+    box-shadow:0 0 50px rgba(0,0,0,0.4);
 }
 
-/* TEXT */
-h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 42px;
-    color: gold;
-    margin-bottom: 15px;
+.rumah-gadang svg{
+    width:260px;
+    fill:gold;
+    opacity:0.9;
 }
 
-.nama {
-    font-size: 26px;
-    color: gold;
-    margin: 10px 0;
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:42px;
+    color:gold;
+    margin-bottom:15px;
 }
 
-.countdown {
-    margin-top: 20px;
-    font-size: 18px;
-    color: gold;
-    font-weight: bold;
+.typing{
+    font-size:18px;
+    color:gold;
+    font-weight:500;
+    border-right:2px solid gold;
+    white-space:nowrap;
+    overflow:hidden;
+    display:inline-block;
+    min-height:25px;
+    margin-top:10px;
 }
 
-button {
-    margin-top: 15px;
-    padding: 12px 25px;
-    border-radius: 30px;
-    border: none;
-    background: gold;
-    color: #5c0a18;
-    font-weight: 600;
-    cursor: pointer;
+.fade-text{
+    font-size:15px;
+    line-height:1.8;
+    margin-top:15px;
+    opacity:0;
+    animation:fadeText 2s ease forwards;
+    animation-delay:3s;
 }
 
-button:hover {
-    background: white;
+@keyframes fadeText{
+    to{opacity:1}
+}
+
+.foto-anak img{
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    border:5px solid gold;
+    object-fit:cover;
+    margin-top:25px;
+}
+
+.nama{
+    font-size:26px;
+    color:gold;
+    margin:15px 0;
+}
+
+.countdown{
+    margin-top:20px;
+    font-size:18px;
+    color:gold;
+    font-weight:bold;
+}
+
+button{
+    margin-top:20px;
+    padding:12px 25px;
+    border-radius:30px;
+    border:none;
+    background:gold;
+    color:#5c0a18;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover{
+    background:white;
 }
 </style>
 </head>
 
 <body>
 
-<!-- 🎵 AUDIO SUPER OPTIMIZED -->
-<audio id="bgMusic" autoplay loop preload="auto">
-    <source src="lagu-minang1.mp3" type="audio/mpeg">
+<!-- ========== ENVELOPE ========== -->
+<div class="envelope-container" id="cover">
+
+<div class="rumah-gadang">
+<svg viewBox="0 0 500 200">
+<path d="M50 150 L100 80 L150 150 L200 80 L250 150 L300 80 L350 150 L400 80 L450 150 Z"/>
+<rect x="60" y="150" width="380" height="30"/>
+</svg>
+</div>
+
+<div class="envelope" onclick="openEnvelope()" id="envelope">
+    <div class="envelope-body"></div>
+    <div class="flap"></div>
+    <div class="envelope-text">Buka Undangan</div>
+</div>
+
+</div>
+
+<!-- AUDIO -->
+<audio id="bgMusic" preload="auto">
+<source src="lagu-minang1.mp3" type="audio/mpeg">
 </audio>
 
-<div class="section">
+<!-- ========== ISI UNDANGAN ========== -->
+<div class="section" id="isi">
 
-<!-- RUMAH GADANG -->
 <div class="rumah-gadang">
 <svg viewBox="0 0 500 200">
 <path d="M50 150 L100 80 L150 150 L200 80 L250 150 L300 80 L350 150 L400 80 L450 150 Z"/>
@@ -204,22 +250,16 @@ button:hover {
 
 <h1>Undangan Syukuran Babako</h1>
 
-<p>بسم الله الرحمن الرحيم</p>
+<div class="typing" id="typingText"></div>
 
-<div class="kata-wrapper">
-    <div class="typing" id="typingText"></div>
-
-    <p class="fade-text">
-        Dengan penuh rasa syukur ke hadirat Allah SWT,<br>
-        kami bermaksud mengundang Bapak/Ibu/Saudara/i<br>
-        untuk berkenan hadir dalam acara Syukuran Babako.
-    </p>
-</div>
-
-<div class="garis-emas"></div>
+<p class="fade-text">
+Dengan penuh rasa syukur ke hadirat Allah SWT,<br>
+kami bermaksud mengundang Bapak/Ibu/Saudara/i<br>
+untuk berkenan hadir dalam acara Syukuran Babako.
+</p>
 
 <div class="foto-anak">
-<img src="foto-anak2.png" alt="Foto Anak">
+<img src="foto-anak2.png">
 </div>
 
 <div class="nama">Azfer Fathariano Zani</div>
@@ -229,10 +269,8 @@ Putra dari<br>
 Bapak Apri Yurizal & Ibu Anike Nuella
 </p>
 
-<h2>Syukuran Babako</h2>
-
-<p><b>Hari / Tanggal :</b> Selasa, 19 Mei 2026</p>
-<p><b>Waktu :</b> 10.00 WIB – Selesai</p>
+<p><b>Selasa, 19 Mei 2026</b></p>
+<p>10.00 WIB – Selesai</p>
 
 <div class="countdown" id="countdown"></div>
 
@@ -242,64 +280,66 @@ Bapak Apri Yurizal & Ibu Anike Nuella
 </div>
 
 <script>
-// 📍 MAP
-function bukaMaps() {
-    window.open("https://maps.app.goo.gl/B4nEzbKgA16r9TMy8");
+
+/* OPEN ENVELOPE */
+function openEnvelope(){
+    document.getElementById("envelope").classList.add("open");
+
+    setTimeout(function(){
+        document.getElementById("cover").style.display="none";
+        document.getElementById("isi").style.display="block";
+        document.body.style.overflow="auto";
+
+        document.getElementById("bgMusic").play();
+
+        typeWriter();
+    },1000);
 }
 
-// ⏳ COUNTDOWN
-var countDownDate = new Date("May 19, 2026 10:00:00").getTime();
-
-setInterval(function() {
-    var now = new Date().getTime();
-    var distance = countDownDate - now;
-
-    var days = Math.floor(distance / (1000*60*60*24));
-    var hours = Math.floor((distance % (1000*60*60*24))/(1000*60*60));
-    var minutes = Math.floor((distance % (1000*60*60))/(1000*60));
-    var seconds = Math.floor((distance % (1000*60))/1000);
-
-    document.getElementById("countdown").innerHTML =
-    "Menuju Acara: " + days + " Hari " + hours + " Jam " +
-    minutes + " Menit " + seconds + " Detik";
-}, 1000);
-
-const text = "Assalamu’alaikum Wr Wb";
-let i = 0;
-
-function typingEffect() {
-    if (i < text.length) {
-        document.getElementById("typingText").innerHTML += text.charAt(i);
-        i++;
-        setTimeout(typingEffect, 80);
+/* TYPING EFFECT */
+const text="Assalamu’alaikum Wr Wb";
+let index=0;
+function typeWriter(){
+    if(index<text.length){
+        document.getElementById("typingText").innerHTML+=text.charAt(index);
+        index++;
+        setTimeout(typeWriter,70);
     }
 }
 
-window.addEventListener("DOMContentLoaded", typingEffect);
+/* MAP */
+function bukaMaps(){
+window.open("https://maps.app.goo.gl/B4nEzbKgA16r9TMy8");
+}
 
-/* 🎵 MUSIK FAST START (ANTI DELAY OPTIMIZED) */
-window.addEventListener("DOMContentLoaded", function() {
-    var music = document.getElementById("bgMusic");
+/* COUNTDOWN */
+var countDownDate=new Date("May 19, 2026 10:00:00").getTime();
+setInterval(function(){
+var now=new Date().getTime();
+var distance=countDownDate-now;
 
-    // paksa load lebih cepat
-    music.load();
+var days=Math.floor(distance/(1000*60*60*24));
+var hours=Math.floor((distance%(1000*60*60*24))/(1000*60*60));
+var minutes=Math.floor((distance%(1000*60*60))/(1000*60));
+var seconds=Math.floor((distance%(1000*60))/1000);
 
-    // coba play secepat mungkin
-    var playPromise = music.play();
+document.getElementById("countdown").innerHTML=
+"Menuju Acara: "+days+" Hari "+hours+" Jam "+
+minutes+" Menit "+seconds+" Detik";
+},1000);
 
-    if (playPromise !== undefined) {
-        playPromise.catch(function() {
-            // fallback kalau diblok browser
-            document.body.addEventListener("click", function () {
-                music.play();
-            }, { once: true });
+</script>
 
-            document.body.addEventListener("touchstart", function () {
-                music.play();
-            }, { once: true });
-        });
-    }
+<script>
+
+// 🔁 FORCE LOOP MUSIC (Backup jika loop gagal)
+var music = document.getElementById("bgMusic");
+
+music.addEventListener("ended", function(){
+    music.currentTime = 0;
+    music.play();
 });
+
 </script>
 
 </body>
